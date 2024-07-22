@@ -1,0 +1,41 @@
+﻿@* @model List<SopalS.Models.ConteneurModel.Conteneur>
+
+
+
+<div id="cards_landscape_wrap-2">
+    <div class="container">
+        <div class="row">
+
+            @foreach (var conteneur in Model)
+            {
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <a href="">
+                        <div class="card-flyer">
+                            <div class="text-box">
+                                <div class="image-box">
+                                    <!-- Vous pouvez remplacer cette image par une image réelle correspondant au conteneur -->
+                                    <img src="https://picsum.photos/200" alt="" />
+                                </div>
+                                <div class="text-container">
+                                    <h6>Réf: @conteneur.Ref</h6>
+                                    <p class="card-text">Code-barres: @conteneur.CodeBarres</p>
+                                    <p class="card-text">Emplacement: @conteneur.Emplacement</p>
+                                    <p class="card-text">DateMiseEnService: @conteneur.DateMiseEnService.ToString("dd-MM-yyyy")</p>
+                                    <p class="card-text">PériodicitéEtalonnage: @conteneur.PeriodiciteEtalonnage</p>
+                                    <p class="card-text">DateDernier Etalonnage: @conteneur.DateDernierEtalonnage.ToString("dd-MM-yyyy")</p>
+                                    <p class="card-text">Dernier Poids: @conteneur.DernierPoids</p>
+                                    <p class="card-text">Unité: @conteneur.Unite</p>
+                                    <p class="card-text">UserCreate: @conteneur.UserCreate</p>
+                                    <p class="card-text">Datecreate: @conteneur.DateCreate.ToString("dd-MM-yyyy HH:mm:ss")</p>
+                                    <p class="card-text">UserUpdate: @conteneur.UserUpdate</p>
+                                    <p class="card-text">DateUpdate: @conteneur.DateUpdate.ToString("dd-MM-yyyy HH:mm:ss")</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+ *@

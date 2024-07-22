@@ -1,0 +1,1447 @@
+﻿@model IEnumerable<SopalS.Models.ConteneurModel.Conteneur>
+
+
+@{
+    ViewData["Title"] = "Add";
+}
+@* 
+@* @* <h1>Index</h1>
+
+
+
+<html lang="en"
+      class="light-style layout-menu-fixed"
+      dir="ltr"
+      data-theme="theme-default"
+      data-assets-path="../assets/"
+      data-template="vertical-menu-template-free">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+   
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+          rel="stylesheet" />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- Page CSS -->
+    <!-- Helpers -->
+    <script src="../assets/vendor/js/helpers.js"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="../assets/js/config.js"></script>
+</head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card-body">
+                            <div class="table-responsive text-nowrap">
+                                <div class="table-container">
+                                    <table class="table table-bordered table-striped" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Réf</th>
+                                                <th>Code-barres</th>
+                                                <th>Emplacement</th>
+                                                <th>Unite</th>
+                                                <th>DateCreate</th>
+                                                <th>DateDernierEtalonnage</th>
+                                                <th>DateMiseEnService</th>
+                                                <th>DateUpdate</th>
+                                                <th>DernierPoids</th>
+                                                <th>PeriodiciteEtalonnage</th>
+                                                <th>UserCreate</th>
+                                                <th>UserUpdate</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var conteneur in Model)
+                                            {
+                                                <tr>
+                                                    <td>@conteneur.Ref</td>
+                                                    <td>@conteneur.CodeBarres</td>
+                                                    <td>@conteneur.Emplacement</td>
+                                                    <td>@conteneur.Unite</td>
+                                                    <td>@conteneur.DateCreate</td>
+                                                    <td>@conteneur.DateDernierEtalonnage</td>
+                                                    <td>@conteneur.DateMiseEnService</td>
+                                                    <td>@conteneur.DateUpdate</td>
+                                                    <td>@conteneur.DernierPoids</td>
+                                                    <td>@conteneur.PeriodiciteEtalonnage</td>
+                                                    <td>@conteneur.UserCreate</td>
+                                                    <td>@conteneur.UserUpdate</td>
+                                                    <td>
+                                                        <div>
+                                                            <a class="btn btn-outline-success" asp-controller="Conteneur" asp-route-id="@conteneur.Ref" asp-action="Update">Edit</a>
+                                                            <a class="btn btn-outline-danger" asp-controller="Conteneur" asp-route-id="@conteneur.Ref" asp-action="Delete">Delete</a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+           <!--navbar-->
+
+                 <!-- / Navbar -->
+                <!-- Content wrapper -->
+            <div class="col-xl">
+            <div class="col-lg-4">
+                <!-- Formulaires au centre à côté de la table -->
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Formulaires</h5>
+                        <small class="text-muted float-end">Ajouter / Modifier</small>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label" for="form-ref">Réf</label>
+                                <input type="text" class="form-control" id="form-ref" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="form-code-barres">Code barres</label>
+                                <input type="text" class="form-control" id="form-code-barres" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="form-emplacement">Emplacement</label>
+                                <input type="text" class="form-control" id="form-emplacement" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="form-unite">Unite</label>
+                                <input type="text" class="form-control" id="form-unite" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="form-date-create">DateCreate</label>
+                                <input type="date" class="form-control" id="form-date-create" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="form-date-etalonnage">DateDernierEtalonnage</label>
+                                <input type="date" class="form-control" id="form-date-etalonnage" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="form-date-mise-service">DateMiseEnService</label>
+                                <input type="date" class="form-control" id="form-date-mise-service" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="form-date-update">DateUpdate</label>
+                                <input type="date" class="form-control" id="form-date-update" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="form-dernier-poids">DernierPoids</label>
+                                <input type="text" class="form-control" id="form-dernier-poids" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="form-periodicite-etalonnage">PeriodiciteEtalonnage</label>
+                                <input type="text" class="form-control" id="form-periodicite-etalonnage" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="form-user-create">UserCreate</label>
+                                <input type="text" class="form-control" id="form-user-create" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="form-user-update">UserUpdate</label>
+                                <input type="text" class="form-control" id="form-user-update" />
+                            </div>
+                            <button type="submit" class="btn btn-primary">Envoyer</button>
+                        </form>
+                    </div>
+                </div>
+            </div> 
+            </div>
+            <!-- footer-->
+          
+                    <!-- / Footer -->
+
+                    <div class="content-backdrop fade"></div>
+                </div>
+                <!-- Content wrapper -->
+            </div>
+            <!-- / Layout page -->
+        </div>
+    <div class="text-end">
+        <button class="btn btn-outline-primary" style="background-color: #000080;">Nouveau</button>
+        <br /><br />
+        <button class="btn btn-outline-primary" style="background-color: #000080;">Supprimer</button>
+        <br /><br />
+        <button class="btn btn-outline-primary" style="background-color: #000080;">Propriétés</button>
+        <br /><br />
+        <button class="btn btn-outline-primary" style="background-color: #000080;">Actualiser</button>
+        <br /><br />
+        <button class="btn btn-outline-primary" style="background-color: #000080;">Quitter</button>
+    </div>
+
+    
+    </div>
+    <!-- / Layout wrapper -->
+
+ 
+ 
+   
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../assets/vendor/js/bootstrap.js"></script>
+    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="../assets/vendor/js/menu.js"></script>
+    <!-- endbuild -->
+    <!-- Vendors JS -->
+    <!-- Main JS -->
+    <script src="../assets/js/main.js"></script>
+
+    <!-- Page JS -->
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+</html> *@
+
+
+
+@* <h1>Index</h1>
+<html lang="en"
+      class="light-style layout-menu-fixed"
+      dir="ltr"
+      data-theme="theme-default"
+      data-assets-path="../assets/"
+      data-template="vertical-menu-template-free">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+          rel="stylesheet" />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- Page CSS -->
+    <!-- Helpers -->
+    <script src="../assets/vendor/js/helpers.js"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="../assets/js/config.js"></script>
+</head>
+<body>
+<div class="container">
+
+    <div class="row">
+        <!-- Tableau à gauche -->
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="table-responsive text-nowrap">
+                        <table class="table table-bordered table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Réf</th>
+                                    <th>Code-barres</th>
+                                    <th>Emplacement</th>
+                                    <th>Unite</th>
+                                    <th>DateCreate</th>
+                                    <th>DateDernierEtalonnage</th>
+                                    <th>DateMiseEnService</th>
+                                    <th>DateUpdate</th>
+                                    <th>DernierPoids</th>
+                                    <th>PeriodiciteEtalonnage</th>
+                                    <th>UserCreate</th>
+                                    <th>UserUpdate</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var conteneur in Model)
+                                {
+                                    <tr>
+                                        <td>@conteneur.Ref</td>
+                                        <td>@conteneur.CodeBarres</td>
+                                        <td>@conteneur.Emplacement</td>
+                                        <td>@conteneur.Unite</td>
+                                        <td>@conteneur.DateCreate</td>
+                                        <td>@conteneur.DateDernierEtalonnage</td>
+                                        <td>@conteneur.DateMiseEnService</td>
+                                        <td>@conteneur.DateUpdate</td>
+                                        <td>@conteneur.DernierPoids</td>
+                                        <td>@conteneur.PeriodiciteEtalonnage</td>
+                                        <td>@conteneur.UserCreate</td>
+                                        <td>@conteneur.UserUpdate</td>
+                                        <td>
+                                            <div>
+                                                <a class="btn btn-outline-success" asp-controller="Conteneur" asp-route-id="@conteneur.Ref" asp-action="Update">Edit</a>
+                                                <a class="btn btn-outline-danger" asp-controller="Conteneur" asp-route-id="@conteneur.Ref" asp-action="Delete">Delete</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Formulaires au centre à côté du tableau -->
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Formulaires</h5>
+                    <small class="text-muted float-end">Ajouter / Modifier</small>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <!-- Champs de formulaire ici -->
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Boutons à droite -->
+            <div class="col-lg-12 col-md-12 col-sm-12 mt-4">
+                <div class="row justify-content-end">
+                    <div class="col-lg-4 text-end">
+                        <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Nouveau</button>
+                        <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Supprimer</button>
+                        <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Propriétés</button>
+                        <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Actualiser</button>
+                        <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Quitter</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+<!-- Scripts nécessaires -->
+<!-- Assurez-vous d'ajuster les chemins vers les fichiers JS selon votre structure de projet -->
+<script src="../assets/vendor/libs/jquery/jquery.js"></script>
+<script src="../assets/vendor/libs/popper/popper.js"></script>
+<script src="../assets/vendor/js/bootstrap.js"></script>
+<script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="../assets/vendor/js/menu.js"></script>
+
+</body>
+</html> *@
+
+
+
+
+@* <h1>Index</h1>
+<html lang="en"
+      class="light-style layout-menu-fixed"
+      dir="ltr"
+      data-theme="theme-default"
+      data-assets-path="../assets/"
+      data-template="vertical-menu-template-free">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+          rel="stylesheet" />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- Page CSS -->
+    <!-- Helpers -->
+    <script src="../assets/vendor/js/helpers.js"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="../assets/js/config.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <!-- Tableau à gauche -->
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="table-responsive text-nowrap">
+                        <table class="table table-bordered table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Réf</th>
+                                    <th>Code-barres</th>
+                                    <th>Emplacement</th>
+                                    <th>Unite</th>
+                                    <th>DateCreate</th>
+                                    <th>DateDernierEtalonnage</th>
+                                    <th>DateMiseEnService</th>
+                                    <th>DateUpdate</th>
+                                    <th>DernierPoids</th>
+                                    <th>PeriodiciteEtalonnage</th>
+                                    <th>UserCreate</th>
+                                    <th>UserUpdate</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var conteneur in Model)
+                                {
+                                    <tr>
+                                        <td>@conteneur.Ref</td>
+                                        <td>@conteneur.CodeBarres</td>
+                                        <td>@conteneur.Emplacement</td>
+                                        <td>@conteneur.Unite</td>
+                                        <td>@conteneur.DateCreate</td>
+                                        <td>@conteneur.DateDernierEtalonnage</td>
+                                        <td>@conteneur.DateMiseEnService</td>
+                                        <td>@conteneur.DateUpdate</td>
+                                        <td>@conteneur.DernierPoids</td>
+                                        <td>@conteneur.PeriodiciteEtalonnage</td>
+                                        <td>@conteneur.UserCreate</td>
+                                        <td>@conteneur.UserUpdate</td>
+                                        <td>
+                                            <div>
+                                                <a class="btn btn-outline-success" asp-controller="Conteneur" asp-route-id="@conteneur.Ref" asp-action="Update">Edit</a>
+                                                <a class="btn btn-outline-danger" asp-controller="Conteneur" asp-route-id="@conteneur.Ref" asp-action="Delete">Delete</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Formulaires au centre à côté du tableau -->
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Formulaires</h5>
+                    <small class="text-muted float-end">Ajouter / Modifier</small>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <!-- Champs de formulaire ici -->
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Boutons à droite des formulaires, alignés verticalement -->
+        <div class="col-lg-12 col-md-12 col-sm-12 mt-4">
+            <div class="row justify-content-end">
+                <div class="col-lg-4 text-end">
+                    <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Nouveau</button>
+                    <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Supprimer</button>
+                    <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Propriétés</button>
+                    <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Actualiser</button>
+                    <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Quitter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts nécessaires -->
+<!-- Assurez-vous d'ajuster les chemins vers les fichiers JS selon votre structure de projet -->
+<script src="../assets/vendor/libs/jquery/jquery.js"></script>
+<script src="../assets/vendor/libs/popper/popper.js"></script>
+<script src="../assets/vendor/js/bootstrap.js"></script>
+<script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="../assets/vendor/js/menu.js"></script>
+</body>
+</html>
+
+
+
+
+    
+
+<h1>Index</h1>
+
+<div class="container">
+    <div class="row">
+        <!-- Tableau à gauche -->
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="table-responsive text-nowrap">
+                        <table class="table table-bordered table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Réf</th>
+                                    <th>Code-barres</th>
+                                    <th>Emplacement</th>
+                                    <th>Unite</th>
+                                    <th>DateCreate</th>
+                                    <th>DateDernierEtalonnage</th>
+                                    <th>DateMiseEnService</th>
+                                    <th>DateUpdate</th>
+                                    <th>DernierPoids</th>
+                                    <th>PeriodiciteEtalonnage</th>
+                                    <th>UserCreate</th>
+                                    <th>UserUpdate</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var conteneur in Model)
+                                {
+                                    <tr>
+                                        <td>@conteneur.Ref</td>
+                                        <td>@conteneur.CodeBarres</td>
+                                        <td>@conteneur.Emplacement</td>
+                                        <td>@conteneur.Unite</td>
+                                        <td>@conteneur.DateCreate</td>
+                                        <td>@conteneur.DateDernierEtalonnage</td>
+                                        <td>@conteneur.DateMiseEnService</td>
+                                        <td>@conteneur.DateUpdate</td>
+                                        <td>@conteneur.DernierPoids</td>
+                                        <td>@conteneur.PeriodiciteEtalonnage</td>
+                                        <td>@conteneur.UserCreate</td>
+                                        <td>@conteneur.UserUpdate</td>
+                                        <td>
+                                            <div>
+                                                <a class="btn btn-outline-success" asp-controller="Conteneur" asp-route-id="@conteneur.Ref" asp-action="Update">Edit</a>
+                                                <a class="btn btn-outline-danger" asp-controller="Conteneur" asp-route-id="@conteneur.Ref" asp-action="Delete">Delete</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Formulaires et boutons à droite -->
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Formulaires</h5>
+                    <small class="text-muted float-end">Ajouter / Modifier</small>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <!-- Champs de formulaire ici -->
+                    </form>
+                    <div class="text-end mt-3">
+                        <button class="btn btn-outline-primary mb-2" style="background-color: #000080;">Nouveau</button>
+                        <button class="btn btn-outline-primary mb-2" style="background-color: #000080;">Supprimer</button>
+                        <button class="btn btn-outline-primary mb-2" style="background-color: #000080;">Propriétés</button>
+                        <button class="btn btn-outline-primary mb-2" style="background-color: #000080;">Actualiser</button>
+                        <button class="btn btn-outline-primary mb-2" style="background-color: #000080;">Quitter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ *@
+<!-- Scripts nécessaires -->
+<!-- Assurez-vous d'ajuster les chemins vers les fichiers JS selon votre structure de projet -->
+@* <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+<script src="../assets/vendor/libs/popper/popper.js"></script>
+<script src="../assets/vendor/js/bootstrap.js"></script>
+<script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="../assets/vendor/js/menu.js"></script> *@
+
+
+
+
+        
+
+@* <h1>Index</h1>
+
+<div class="container">
+    <div class="row">
+        <!-- Tableau à gauche -->
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="table-responsive text-nowrap">
+                        <table class="table table-bordered table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Réf</th>
+                                    <th>Code-barres</th>
+                                    <th>Emplacement</th>
+                                    <th>Unite</th>
+                                    <th>DateCreate</th>
+                                    <th>DateDernierEtalonnage</th>
+                                    <th>DateMiseEnService</th>
+                                    <th>DateUpdate</th>
+                                    <th>DernierPoids</th>
+                                    <th>PeriodiciteEtalonnage</th>
+                                    <th>UserCreate</th>
+                                    <th>UserUpdate</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var conteneur in Model)
+                                {
+                                    <tr>
+                                        <td>@conteneur.Ref</td>
+                                        <td>@conteneur.CodeBarres</td>
+                                        <td>@conteneur.Emplacement</td>
+                                        <td>@conteneur.Unite</td>
+                                        <td>@conteneur.DateCreate</td>
+                                        <td>@conteneur.DateDernierEtalonnage</td>
+                                        <td>@conteneur.DateMiseEnService</td>
+                                        <td>@conteneur.DateUpdate</td>
+                                        <td>@conteneur.DernierPoids</td>
+                                        <td>@conteneur.PeriodiciteEtalonnage</td>
+                                        <td>@conteneur.UserCreate</td>
+                                        <td>@conteneur.UserUpdate</td>
+                                        <td>
+                                            <div>
+                                                <a class="btn btn-outline-success" asp-controller="Conteneur" asp-route-id="@conteneur.Ref" asp-action="Update">Edit</a>
+                                                <a class="btn btn-outline-danger" asp-controller="Conteneur" asp-route-id="@conteneur.Ref" asp-action="Delete">Delete</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Formulaires à gauche -->
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Formulaires</h5>
+                    <small class="text-muted float-end">Ajouter / Modifier</small>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <!-- Champs de formulaire ici -->
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Boutons à droite du formulaire, alignés verticalement -->
+        <div class="col-lg-12 mt-4">
+            <div class="col">
+                <div class="col-lg-4">
+                    <div class="text-end">
+                        <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Nouveau</button>
+                        <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Supprimer</button>
+                        <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Propriétés</button>
+                        <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Actualiser</button>
+                        <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Quitter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts nécessaires -->
+<!-- Assurez-vous d'ajuster les chemins vers les fichiers JS selon votre structure de projet -->
+<script src="../assets/vendor/libs/jquery/jquery.js"></script>
+<script src="../assets/vendor/libs/popper/popper.js"></script>
+<script src="../assets/vendor/js/bootstrap.js"></script>
+<script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="../assets/vendor/js/menu.js"></script>
+
+
+     
+
+<h1>Index</h1>
+<body>
+<div class="container">
+    <div class="row">
+        <!-- Tableau à gauche -->
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="table-responsive text-nowrap">
+                        <table class="table table-bordered table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Réf</th>
+                                    <th>Code-barres</th>
+                                    <th>Emplacement</th>
+                                    <th>Unite</th>
+                                    <th>DateCreate</th>
+                                    <th>DateDernierEtalonnage</th>
+                                    <th>DateMiseEnService</th>
+                                    <th>DateUpdate</th>
+                                    <th>DernierPoids</th>
+                                    <th>PeriodiciteEtalonnage</th>
+                                    <th>UserCreate</th>
+                                    <th>UserUpdate</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var conteneur in Model)
+                                {
+                                    <tr>
+                                        <td>@conteneur.Ref</td>
+                                        <td>@conteneur.CodeBarres</td>
+                                        <td>@conteneur.Emplacement</td>
+                                        <td>@conteneur.Unite</td>
+                                        <td>@conteneur.DateCreate</td>
+                                        <td>@conteneur.DateDernierEtalonnage</td>
+                                        <td>@conteneur.DateMiseEnService</td>
+                                        <td>@conteneur.DateUpdate</td>
+                                        <td>@conteneur.DernierPoids</td>
+                                        <td>@conteneur.PeriodiciteEtalonnage</td>
+                                        <td>@conteneur.UserCreate</td>
+                                        <td>@conteneur.UserUpdate</td>
+                                        <td>
+                                            <div>
+                                                <a class="btn btn-outline-success" asp-controller="Conteneur" asp-route-id="@conteneur.Ref" asp-action="Update">Edit</a>
+                                                <a class="btn btn-outline-danger" asp-controller="Conteneur" asp-route-id="@conteneur.Ref" asp-action="Delete">Delete</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Formulaires à gauche -->
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Formulaires</h5>
+                    <small class="text-muted float-end">Ajouter / Modifier</small>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <!-- Champs de formulaire ici -->
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Boutons à droite du formulaire, alignés verticalement -->
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="text-end">
+                        <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Nouveau</button>
+                        <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Supprimer</button>
+                        <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Propriétés</button>
+                        <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Actualiser</button>
+                        <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Quitter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> *@
+
+<!-- Scripts nécessaires -->
+<!-- Assurez-vous d'ajuster les chemins vers les fichiers JS selon votre structure de projet -->
+@* <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+<script src="../assets/vendor/libs/popper/popper.js"></script>
+<script src="../assets/vendor/js/bootstrap.js"></script>
+<script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="../assets/vendor/js/menu.js"></script>
+</body>
+ *@
+
+
+
+
+
+
+
+
+
+
+@* <h1>Index</h1>
+
+<div class="container">
+    <div class="row">
+        <!-- Boutons à gauche, alignés verticalement -->
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div>
+                        <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Nouveau</button>
+                        <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Supprimer</button>
+                        <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Propriétés</button>
+                        <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Actualiser</button>
+                        <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;">Quitter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Formulaires à droite -->
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Formulaires</h5>
+                    <small class="text-muted float-end">Ajouter / Modifier</small>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <!-- Champs de formulaire ici -->
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tableau en dessous -->
+        <div class="col-lg-12">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="table-responsive text-nowrap">
+                        <table class="table table-bordered table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Réf</th>
+                                    <th>Code-barres</th>
+                                    <th>Emplacement</th>
+                                    <th>Unite</th>
+                                    <th>DateCreate</th>
+                                    <th>DateDernierEtalonnage</th>
+                                    <th>DateMiseEnService</th>
+                                    <th>DateUpdate</th>
+                                    <th>DernierPoids</th>
+                                    <th>PeriodiciteEtalonnage</th>
+                                    <th>UserCreate</th>
+                                    <th>UserUpdate</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var conteneur in Model)
+                                {
+                                    <tr>
+                                        <td>@conteneur.Ref</td>
+                                        <td>@conteneur.CodeBarres</td>
+                                        <td>@conteneur.Emplacement</td>
+                                        <td>@conteneur.Unite</td>
+                                        <td>@conteneur.DateCreate</td>
+                                        <td>@conteneur.DateDernierEtalonnage</td>
+                                        <td>@conteneur.DateMiseEnService</td>
+                                        <td>@conteneur.DateUpdate</td>
+                                        <td>@conteneur.DernierPoids</td>
+                                        <td>@conteneur.PeriodiciteEtalonnage</td>
+                                        <td>@conteneur.UserCreate</td>
+                                        <td>@conteneur.UserUpdate</td>
+                                        <td>
+                                            <div>
+                                                <a class="btn btn-outline-success" asp-controller="Conteneur" asp-route-id="@conteneur.Ref" asp-action="Update">Edit</a>
+                                                <a class="btn btn-outline-danger" asp-controller="Conteneur" asp-route-id="@conteneur.Ref" asp-action="Delete">Delete</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div> *@
+
+<!-- Scripts nécessaires -->
+<!-- Assurez-vous d'ajuster les chemins vers les fichiers JS selon votre structure de projet -->
+@* <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+<script src="../assets/vendor/libs/popper/popper.js"></script>
+<script src="../assets/vendor/js/bootstrap.js"></script>
+<script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="../assets/vendor/js/menu.js"></script>   
+ *@
+
+<html lang="en"
+      class="light-style layout-menu-fixed"
+      dir="ltr"
+      data-theme="theme-default"
+      data-assets-path="../assets/"
+      data-template="vertical-menu-template-free">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <style>
+        .navbar-custom {
+            background-color: #000080;
+        }
+
+            .navbar-custom .nav-link {
+                color: #ffffff; /* Pour les liens */
+            }
+
+            .navbar-custom .navbar-brand {
+                color: #ffffff; /* Pour le texte 'Sopal' */
+            }
+    </style>
+
+
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+          rel="stylesheet" />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- Page CSS -->
+    <!-- Helpers -->
+    <script src="../assets/vendor/js/helpers.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="../assets/js/config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-custom" data-bs-theme="dark">
+            <div class="container-fluid">
+                <span class="app-brand-text demo menu-text fw-bolder ms-2">  <img src="~/img/logosopal.png" class="img-fluid" style="max-width:50px; height: 50px;" alt="Logo Sopal"></span>
+                @* <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button> *@
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="" asp-action="">PlAN DI & CASSE A OUTIL <i class="bi bi-arrows-fullscreen"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Conteneur" asp-action="Index">Donnés de base</a>
+                            <span class="visually-hidden">(current)</span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="" asp-action="">parametrage</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <a asp-controller="Utilisateur" asp-action="Register" class="bi bi-person-circle"></a>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+ </div> 
+    </header>
+    <br />
+    <br />
+    <br />
+<div class="container">
+    <div class="row">
+        <!-- Tableau à gauche -->
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="table-responsive text-nowrap">
+                            <input type="text" id="searchRef" placeholder="Rechercher par referance" class="form-control" style="width:200px; margin-bottom: 10px;">
+                            <table class="table table-bordered table-striped" style="width:100%" id="userTableBody">
+                            <thead>
+                                <tr>
+                                    <th>Réf</th>
+                                    <th>Code-barres</th>
+                                    <th>Emplacement</th>
+                                    <th>Unite</th>
+                                    <th>DateCreate</th>
+                                    <th>DateDernierEtalonnage</th>
+                                    <th>DateMiseEnService</th>
+                                    <th>DateUpdate</th>
+                                    <th>DernierPoids</th>
+                                    <th>PeriodiciteEtalonnage</th>
+                                    <th>UserCreate</th>
+                                    <th>UserUpdate</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                                <tbody id="userTableBody">
+                                @foreach (var conteneur in Model)
+                                {
+                                        <tr onclick="loadConteneurData('@conteneur.Ref', '@conteneur.CodeBarres', '@conteneur.EmplacementId', '@conteneur.Unite', '@conteneur.DateCreate', '@conteneur.DateDernierEtalonnage', '@conteneur.DateMiseEnService', '@conteneur.DateUpdate', '@conteneur.DernierPoids', '@conteneur.PeriodiciteEtalonnage', '@conteneur.UserCreate', '@conteneur.UserUpdate')">
+>
+                                        <td>@conteneur.Ref</td>
+                                        <td>@conteneur.CodeBarres</td>
+                                            <td>@(conteneur.Emplacement != null ? conteneur.Emplacement.Codeemp : "")</td>
+                                        <td>@conteneur.Unite</td>
+                                        <td>@conteneur.DateCreate</td>
+                                        <td>@conteneur.DateDernierEtalonnage</td>
+                                        <td>@conteneur.DateMiseEnService</td>
+                                        <td>@conteneur.DateUpdate</td>
+                                        <td>@conteneur.DernierPoids</td>
+                                        <td>@conteneur.PeriodiciteEtalonnage</td>
+                                        <td>@conteneur.UserCreate</td>
+                                        <td>@conteneur.UserUpdate</td>
+                                        <td>
+                                            <div>
+                                                <a class="btn btn-outline-success" asp-controller="Conteneur" asp-route-id="@conteneur.Ref" asp-action="Update">Edit</a>
+                                                <a class="btn btn-outline-danger" asp-controller="Conteneur" asp-route-id="@conteneur.Ref" asp-action="Delete">Delete</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Formulaire au centre -->
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Formulaires</h5>
+                    <small class="text-muted float-end">Ajouter / Modifier</small>
+                </div>
+                <div class="card-body">
+                       @*  <form method="post" action="Add"> *@
+                           @*  <div class="form-group">
+                                <label asp-for="Ref" class="control-label"></label>
+                                <input asp-for="Ref" class="form-control" />
+                                <span asp-validation-for="Ref" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CodeBarres" class="control-label"></label>
+                                <input asp-for="CodeBarres" class="form-control" />
+                                <span asp-validation-for="CodeBarres" class="text-danger"></span>
+                            </div>
+                            *@                       
+                            <form id="utilisateurForm">
+                                <div class="form-group">
+                                    <label for="Ref">Referance</label>
+                                    <input type="number" class="form-control" id="Ref" name="Ref" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="CodeBarres">Code barres</label>
+                                    <input type="text" class="form-control" id="CodeBarres" name="CodeBarres" required />
+                                </div>
+                            <label for="Emplacement">Emplacement</label>
+                            <select class="form-control" id="Emplacement" name="EmplacementId" required>
+                                <option value="">Sélectionnez un emplacement</option>
+                                @* @foreach (var item in ViewBag.Emplacements)
+                                {
+                                <option value="@item.Codeemp">@item.libele</option>
+                                } *@
+                            </select>
+                           @*  <div class="form-group">
+                                <label for="Unite">Unite</label>
+                                <input type="text" class="form-control" id="Unite" name="Unite" />
+                            </div> *@
+                            <label for="Unite">Unite</label>
+                            <select class="form-control" id="Unite" name="Unite">
+                                <option value="kg">kg</option>
+                                <option value="tonne">tonne</option>
+                                <option value="g">g</option>
+                                <option value="lb">lb</option>
+                                <!-- Ajoutez d'autres options ici -->
+                            </select> 
+                            <div class="form-group">
+                                <label for="DateCreate">DateCreate</label>
+                                <input type="datetime-local" class="form-control" id="DateCreate" name="DateCreate" />
+                            </div>
+                            <div class="form-group">
+                                <label for="DateDernierEtalonnage">DateDernierEtalonnage</label>
+                                <input type="datetime-local" class="form-control" id="DateDernierEtalonnage" name="DateDernierEtalonnage" readonly />
+                            </div>
+
+                                <div class="form-group">
+                                    <label for="DateMiseEnService">DateMiseEnService</label>
+                                <input type="datetime-local" class="form-control" id="DateMiseEnService" name="DateMiseEnService" required />
+                                </div>
+                            <div class="form-group">
+                                <label for="DateUpdate">DateUpdate</label>
+                                <input type="datetime-local" class="form-control" id="DateUpdate" name="DateUpdate" />
+                            </div>
+                            <div class="form-group">
+                                <label for="DernierPoids">DernierPoids</label>
+                                <input type="text" class="form-control" id="DernierPoids" name="DernierPoids" />
+                            </div>
+                                <div class="form-group">
+                                    <label for="PeriodiciteEtalonnage">PeriodiciteEtalonnage</label>
+                                <input type="number" class="form-control" id="PeriodiciteEtalonnage" name="PeriodiciteEtalonnage" required />
+                                </div>
+                               
+                                 
+                                  
+                                <div class="form-group">
+                                    <label for="UserCreate">UserCreate</label>
+                                    <input type="text" class="form-control" id="UserCreate" name="UserCreate" />
+                                </div>
+                                 
+                          
+                                  <div class="form-group">
+                                    <label for="UserUpdate">UserUpdate</label>
+                                    <input type="text" class="form-control" id="UserUpdate" name="UserUpdate" />
+                                </div>
+                              
+                             @*    <button type="button" class="btn btn-primary" id="saveUtilisateur">Ajouter</button> *@
+                        @*     <button class="btn btn-block mb-2 right-panel-btn"  style="background-color: #000080; color: white;"> supprimer</button> *@
+
+
+                            </form>
+
+                         
+                </div>
+            </div>
+        </div>
+        
+        <!-- Boutons à droite du formulaire, alignés verticalement -->
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="text-start">
+                            <button class="btn btn-outline-primary mb-2 d-block" id="saveUtilisateur" style="background-color: #000080;"><i class="bi bi-plus-circle-fill"></i> Nouveau </i></button>
+                            <button class="btn btn-outline-primary mb-2 d-block" onclick="deleteSelectedUser()" style="background-color: #000080;"><i class="fas fa-trash"> Supprimer</i></button>
+                            <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;"><i class="bi bi-check-circle"> Propriétés</i></button>
+                            <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;"><i class="bi bi-arrow-repeat"> Actualiser</i></button>
+                            <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;"><i class="bi bi-x-octagon"> Quitter</i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+<!-- Scripts nécessaires -->
+<!-- Assurez-vous d'ajuster les chemins vers les fichiers JS selon votre structure de projet -->
+<script src="../assets/vendor/libs/jquery/jquery.js"></script>
+<script src="../assets/vendor/libs/popper/popper.js"></script>
+<script src="../assets/vendor/js/bootstrap.js"></script>
+<script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="../assets/vendor/js/menu.js"></script>
+
+ @section Scripts {
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                loadEmplacements(); // Chargement initial des emplacements au chargement de la page
+
+                // Gestion de l'événement de clic sur le bouton saveUtilisateur
+                document.getElementById('saveUtilisateur').addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    var utilisateur = {
+                        CodeBarres: document.getElementById('CodeBarres').value,
+                        EmplacementId: parseInt(document.getElementById('Emplacement').value), // Utilisation de EmplacementId et conversion en int
+                        DateMiseEnService: $('#DateMiseEnService').val(),
+                        PeriodiciteEtalonnage: parseInt(document.getElementById('PeriodiciteEtalonnage').value),
+                        DateDernierEtalonnage: document.getElementById('DateDernierEtalonnage').value,
+                        DernierPoids: parseFloat(document.getElementById('DernierPoids').value),
+                        Unite: document.getElementById('Unite').value,
+                        UserCreate: document.getElementById('UserCreate').value,
+                        DateCreate: document.getElementById('DateCreate').value,
+                        UserUpdate: document.getElementById('UserUpdate').value,
+                        DateUpdate: document.getElementById('DateUpdate').value
+                    };
+
+                    $.ajax({
+                        url: '/Conteneur/Add',
+                        type: 'POST',
+                        data: JSON.stringify(utilisateur),
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (result) {
+                            alert('Conteneur ajouté avec succès.');
+                            location.reload(); // Recharger la page pour refléter les changements
+                        },
+                        error: function (xhr) {
+                            var error = JSON.parse(xhr.responseText);
+                            alert('Erreur lors de l\'ajout du conteneur : ' + JSON.stringify(error));
+                        }
+                    });
+                });
+
+                // Gestion de l'événement de changement de la date de mise en service
+                document.getElementById('DateMiseEnService').addEventListener('change', function () {
+                    var dateMiseEnService = new Date(this.value);
+                    if (!isNaN(dateMiseEnService.getTime())) {
+                        dateMiseEnService.setDate(dateMiseEnService.getDate() + 30); // Ajouter 30 jours
+                        var dateDernierEtalonnage = dateMiseEnService.toISOString().slice(0, 16); // Format YYYY-MM-DDTHH:mm
+                        document.getElementById('DateDernierEtalonnage').value = dateDernierEtalonnage;
+                    }
+                });
+            });
+
+            // Fonction pour charger les emplacements via AJAX
+            function loadEmplacements() {
+                $.ajax({
+                    url: '@Url.Action("GetEmplacements", "Conteneur")',
+                    type: 'GET',
+                    success: function (data) {
+                        var $emplacementSelect = $('#Emplacement');
+                        $emplacementSelect.empty();
+                        $emplacementSelect.append('<option value="">Sélectionnez un emplacement</option>');
+                        $.each(data, function (i, emplacement) {
+                            $emplacementSelect.append('<option value="' + emplacement.codeemp + '">' + emplacement.libele + '</option>');
+                        });
+
+                        // Sélectionner l'emplacement déjà enregistré si applicable
+                        var selectedEmplacementId = $('#EmplacementId').val();
+
+                        // Récupérer l'ID de l'emplacement sélectionné
+                        if (selectedEmplacementId) {
+                            $emplacementSelect.val(selectedEmplacementId); // Sélectionner l'option correspondante dans la liste déroulante
+                        }
+                    },
+                    error: function () {
+                        alert('Erreur lors du chargement des emplacements.');
+                    }
+                });
+            }
+
+
+
+         
+
+    // $(document).ready(function () {
+    //         $('#saveUtilisateur').click(function () {
+    // var utilisateur = {
+    //                 Ref: $('#Ref').val(),
+    //                 CodeBarres: $('#CodeBarres').val(),
+    //                 Emplacement: $('#Emplacement').val(),
+    //                 DateMiseEnService: $('#DateMiseEnService').val(),
+    //                 PeriodiciteEtalonnage: $('#PeriodiciteEtalonnage').val(),
+    //                 DateDernierEtalonnage: $('#DateDernierEtalonnage').val(),
+    //                 DernierPoids: $('#DernierPoids').val(),
+    //                 Unite: $('#Unite').val(),
+    //                 UserCreate: $('#UserCreate').val(),
+    //                 DateCreate: $('#DateCreate').val(),
+    //                 UserUpdate: $('#UserUpdate').val(),
+    //                 DateUpdate: $('#DateUpdate').val(),
+
+ 
+    // };
+
+    // $.ajax({
+    //                     url: '/Conteneur/Create',
+    // type: 'POST',
+    // contentType: 'application/json',
+    // data: JSON.stringify(utilisateur),
+    // success: function (result) {
+    // alert('conteneur ajouté avec succès !');
+    // // Optionnel : rafraîchir la page ou la liste des utilisateurs
+    // },
+    // error: function (xhr, status, error) {
+    // alert('Erreur : ' + error);
+    // }
+    // });
+    // });
+    // });
+  
+            function deleteSelectedUser() {
+                var selectedUserId = $('table tbody tr.selected').find('td:first').text().trim();
+                if (!selectedUserId) {
+                    alert('Veuillez sélectionner un conteneur à supprimer.');
+                    return;
+                }
+
+                if (confirm('Êtes-vous sûr de vouloir supprimer ce conteneur ?')) {
+                    $.ajax({
+                        url: '/Conteneur/Delete/' + selectedUserId,
+                        type: 'POST',
+
+                        success: function (result) {
+                            alert('Conteneur supprimé avec succès.');
+                            $('table tbody tr.selected').remove(); // Supprimer la ligne du tableau après la suppression
+                        },
+                        error: function () {
+                            alert('Erreur lors de la suppression du conteneur.');
+                        }
+                    });
+                }
+            }
+
+
+
+            function loadConteneurData(ref, codeBarres, emplacement, unite, dateCreate, dateDernierEtalonnage, dateMiseEnService, dateUpdate, dernierPoids, periodiciteEtalonnage, userCreate, userUpdate) {
+                $('#Ref').val(ref);
+                $('#CodeBarres').val(codeBarres);
+                $('#Emplacement').val(emplacement);
+                $('#Unite').val(unite);
+
+                // Formatage des dates pour correspondre au type datetime-local
+                function formatDate(dateString) {
+                    if (!dateString) return '';
+                    var date = new Date(dateString);
+                    var formattedDate = date.getFullYear() + '-' +
+                        ('0' + (date.getMonth() + 1)).slice(-2) + '-' +
+                        ('0' + date.getDate()).slice(-2) + 'T' +
+                        ('0' + date.getHours()).slice(-2) + ':' +
+                        ('0' + date.getMinutes()).slice(-2);
+                    return formattedDate;
+                }
+
+                $('#DateCreate').val(formatDate(dateCreate));
+                $('#DateDernierEtalonnage').val(formatDate(dateDernierEtalonnage));
+                $('#DateMiseEnService').val(formatDate(dateMiseEnService));
+                $('#DateUpdate').val(formatDate(dateUpdate));
+                $('#DernierPoids').val(dernierPoids);
+                $('#PeriodiciteEtalonnage').val(periodiciteEtalonnage);
+                $('#UserCreate').val(userCreate);
+                $('#UserUpdate').val(userUpdate);
+            }
+
+
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var searchInput = document.getElementById('searchRef');
+                searchInput.addEventListener('keyup', function () {
+                    var searchTerm = searchInput.value.toLowerCase();
+                    var tableRows = document.querySelectorAll('#userTableBody tr');
+
+                    tableRows.forEach(function (row) {
+                        var Ref = row.cells[0].innerText.toLowerCase(); // Colonne CodUsr
+                        if (Ref.includes(searchTerm)) {
+                            row.style.display = ''; // Afficher la ligne si elle correspond
+                        } else {
+                            row.style.display = 'none'; // Cacher la ligne si elle ne correspond pas
+                        }
+                    });
+                });
+            });
+
+
+    </script>
+    
+ 
+       
+      @*   <script>
+            $(document).ready(function () {
+                $('#deleteUtilisateur').click(function () {
+                    var utilisateur = {
+                        Ref: $('#Ref').val(),
+                        CodeBarres: $('#CodeBarres').val(),
+                        Emplacement: $('#Emplacement').val(),
+                        DateMiseEnService: $('#DateMiseEnService').val(),
+                        PeriodiciteEtalonnage: $('#PeriodiciteEtalonnage').val(),
+                        DateDernierEtalonnage: $('#DateDernierEtalonnage').val(),
+                        DernierPoids: $('#DernierPoids').val(),
+                        Unite: $('#Unite').val(),
+                        UserCreate: $('#UserCreate').val(),
+                        DateCreate: $('#DateCreate').val(),
+                        UserUpdate: $('#UserUpdate').val(),
+                        DateUpdate: $('#DateUpdate').val(),
+
+
+                    };
+
+                    $.ajax({
+                        url: '@Url.Action("Delete", "conteneur")',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(utilisateur),
+                        success: function (result) {
+                            alert('conteneur ajouté avec succès !');
+                            // Optionnel : rafraîchir la page ou la liste des utilisateurs
+                        },
+                        error: function (xhr, status, error) {
+                            alert('Erreur : ' + error);
+                        }
+                    });
+                });
+            });
+
+
+        </script> *@
+    
+}
+</body>
+</html>

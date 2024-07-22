@@ -1,0 +1,91 @@
+﻿@model SopalS.Models.ConteneurModel.Conteneur
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Update</h1>
+
+<h4>Conteneur</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Update" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Ref" class="control-label"></label>
+                <input asp-for="Ref"  class="form-control" />
+                <span asp-validation-for="Ref" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CodeBarres" class="control-label"></label>
+                <input asp-for="CodeBarres" class="form-control" />
+                <span asp-validation-for="CodeBarres" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Emplacement" class="control-label"></label>
+                <input asp-for="Emplacement" class="form-control" />
+                <span asp-validation-for="Emplacement" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Unite" class="control-label"></label>
+                <input asp-for="Unite" class="form-control" />
+                <span asp-validation-for="Unite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateCreate" class="control-label"></label>
+                <input asp-for="DateCreate" class="form-control" />
+                <span asp-validation-for="DateCreate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateDernierEtalonnage" class="control-label"></label>
+                <input asp-for="DateDernierEtalonnage" class="form-control" />
+                <span asp-validation-for="DateDernierEtalonnage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateMiseEnService" class="control-label"></label>
+                <input asp-for="DateMiseEnService" class="form-control" />
+                <span asp-validation-for="DateMiseEnService" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateUpdate" class="control-label"></label>
+                <input asp-for="DateUpdate" class="form-control" />
+                <span asp-validation-for="DateUpdate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DernierPoids" class="control-label"></label>
+                <input asp-for="DernierPoids" class="form-control" />
+                <span asp-validation-for="DernierPoids" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PeriodiciteEtalonnage" class="control-label"></label>
+                <input asp-for="PeriodiciteEtalonnage" class="form-control" />
+                <span asp-validation-for="PeriodiciteEtalonnage" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="UserCreate" class="control-label"></label>
+                <input asp-for="UserCreate" class="form-control" />
+                <span asp-validation-for="UserCreate" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="UserUpdate" class="control-label"></label>
+                <input asp-for="UserUpdate" class="form-control" />
+                <span asp-validation-for="UserUpdate" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <input type="submit" value="Edit" class="btn btn-outline-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
