@@ -1009,7 +1009,7 @@
                             <span class="visually-hidden">(current)</span>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="" asp-action="">parametrage</a>
+                            <a class="nav-link" asp-area="" asp-controller="listeConteneurEchu" asp-action="Index">parametrage</a>
                         </li>
                     </ul>
                     <form class="d-flex">
@@ -1087,31 +1087,20 @@
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Formulaires</h5>
-                    <small class="text-muted float-end">Ajouter / Modifier</small>
+                    <small class="text-muted float-end">Ajouter </small>
                 </div>
                 <div class="card-body">
-                       @*  <form method="post" action="Add"> *@
-                           @*  <div class="form-group">
-                                <label asp-for="Ref" class="control-label"></label>
-                                <input asp-for="Ref" class="form-control" />
-                                <span asp-validation-for="Ref" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="CodeBarres" class="control-label"></label>
-                                <input asp-for="CodeBarres" class="form-control" />
-                                <span asp-validation-for="CodeBarres" class="text-danger"></span>
-                            </div>
-                            *@                       
+                                           
                             <form id="utilisateurForm">
                                 <div class="form-group">
-                                    <label for="Ref">Referance</label>
+                                    <label for="Ref">Reference</label>
                                     <input type="number" class="form-control" id="Ref" name="Ref" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="CodeBarres">Code barres</label>
                                     <input type="text" class="form-control" id="CodeBarres" name="CodeBarres" required />
                                 </div>
-                            <label for="Emplacement">Emplacement</label>
+                            <label for="EmplacementId">Emplacement</label>
                             <select class="form-control" id="Emplacement" name="EmplacementId" required>
                                 <option value="">Sélectionnez un emplacement</option>
                                 @* @foreach (var item in ViewBag.Emplacements)
@@ -1170,8 +1159,7 @@
                                     <input type="text" class="form-control" id="UserUpdate" name="UserUpdate" />
                                 </div>
                               
-                             @*    <button type="button" class="btn btn-primary" id="saveUtilisateur">Ajouter</button> *@
-                        @*     <button class="btn btn-block mb-2 right-panel-btn"  style="background-color: #000080; color: white;"> supprimer</button> *@
+                           
 
 
                             </form>
@@ -1181,16 +1169,20 @@
             </div>
         </div>
         
-        <!-- Boutons à droite du formulaire, alignés verticalement -->
+     
         <div class="col-lg-4">
             <div class="card mb-4">
                 <div class="card-body">
                     <div class="text-start">
-                            <button class="btn btn-outline-primary mb-2 d-block" id="saveUtilisateur" style="background-color: #000080;"><i class="bi bi-plus-circle-fill"></i> Nouveau </i></button>
-                            <button class="btn btn-outline-primary mb-2 d-block" onclick="deleteSelectedUser()" style="background-color: #000080;"><i class="fas fa-trash"> Supprimer</i></button>
+                            <button class="btn btn-outline-primary mb-2 d-block" id="saveUtilisateur" style="background-color: #FFA500;"><i class="bi bi-card-list"> Enregister </i></button>
+                            <br />
+                            <br />
+                            <button class="btn btn-outline-primary mb-2 d-block" id="saveUtilisateur" style="background-color: #000080;"><i class="bi bi-plus-circle-fill"> Nouveau  </i></button>
+
+                            <button class="btn btn-outline-primary mb-2 d-block" onclick="confirmDeleteSelected()" style="background-color: #000080;"><i class="fas fa-trash"> Supprimer</i></button>
                             <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;"><i class="bi bi-check-circle"> Propriétés</i></button>
                             <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;"><i class="bi bi-arrow-repeat"> Actualiser</i></button>
-                            <button class="btn btn-outline-primary mb-2 d-block" style="background-color: #000080;"><i class="bi bi-x-octagon"> Quitter</i></button>
+                            <button class="btn btn-outline-primary mb-2 d-block" onclick="redirectToHome()" style="background-color: #000080;"><i class="bi bi-x-octagon"> Quitter</i></button>
                     </div>
                 </div>
             </div>
@@ -1200,8 +1192,7 @@
 </div>
 
 
-<!-- Scripts nécessaires -->
-<!-- Assurez-vous d'ajuster les chemins vers les fichiers JS selon votre structure de projet -->
+
 <script src="../assets/vendor/libs/jquery/jquery.js"></script>
 <script src="../assets/vendor/libs/popper/popper.js"></script>
 <script src="../assets/vendor/js/bootstrap.js"></script>
@@ -1213,15 +1204,14 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
             $(document).ready(function () {
-                loadEmplacements(); // Chargement initial des emplacements au chargement de la page
+                loadEmplacements(); 
 
-                // Gestion de l'événement de clic sur le bouton saveUtilisateur
                 document.getElementById('saveUtilisateur').addEventListener('click', function (e) {
                     e.preventDefault();
 
                     var utilisateur = {
                         CodeBarres: document.getElementById('CodeBarres').value,
-                        EmplacementId: parseInt(document.getElementById('Emplacement').value), // Utilisation de EmplacementId et conversion en int
+                        EmplacementId: parseInt(document.getElementById('Emplacement').value), 
                         DateMiseEnService: $('#DateMiseEnService').val(),
                         PeriodiciteEtalonnage: parseInt(document.getElementById('PeriodiciteEtalonnage').value),
                         DateDernierEtalonnage: document.getElementById('DateDernierEtalonnage').value,
@@ -1240,7 +1230,7 @@
                         contentType: 'application/json; charset=utf-8',
                         success: function (result) {
                             alert('Conteneur ajouté avec succès.');
-                            location.reload(); // Recharger la page pour refléter les changements
+                            location.reload(); 
                         },
                         error: function (xhr) {
                             var error = JSON.parse(xhr.responseText);
@@ -1249,7 +1239,7 @@
                     });
                 });
 
-                // Gestion de l'événement de changement de la date de mise en service
+               
                 document.getElementById('DateMiseEnService').addEventListener('change', function () {
                     var dateMiseEnService = new Date(this.value);
                     if (!isNaN(dateMiseEnService.getTime())) {
@@ -1259,6 +1249,9 @@
                     }
                 });
             });
+            function redirectToHome() {
+                window.location.href = '/Home/Index';
+            }
 
             // Fonction pour charger les emplacements via AJAX
             function loadEmplacements() {
@@ -1286,45 +1279,39 @@
                     }
                 });
             }
+            function confirmDelete(ref) {
+                if (confirm("Êtes-vous sûr de vouloir supprimer cet élément ?")) {
+                    deleteConteneur(ref);
+                }
+            }
+
+            function confirmDeleteSelected() {
+                const ref = document.getElementById("Ref").value;
+                if (ref && confirm("Êtes-vous sûr de vouloir supprimer cet élément ?")) {
+                    deleteConteneur(ref);
+                }
+            }
+
+            function deleteConteneur(ref) {
+                fetch(`/Conteneur/Delete/${ref}`, {
+                    method: 'DELETE'
+                }).then(response => {
+                    if (response.ok) {
+                        alert("Conteneur supprimé avec succès.");
+                        location.reload();
+                    } else {
+                        alert("Une erreur s'est produite lors de la suppression du conteneur.");
+                    }
+                }).catch(error => {
+                    console.error("Erreur lors de la suppression:", error);
+                });
+            }
 
 
 
          
 
-    // $(document).ready(function () {
-    //         $('#saveUtilisateur').click(function () {
-    // var utilisateur = {
-    //                 Ref: $('#Ref').val(),
-    //                 CodeBarres: $('#CodeBarres').val(),
-    //                 Emplacement: $('#Emplacement').val(),
-    //                 DateMiseEnService: $('#DateMiseEnService').val(),
-    //                 PeriodiciteEtalonnage: $('#PeriodiciteEtalonnage').val(),
-    //                 DateDernierEtalonnage: $('#DateDernierEtalonnage').val(),
-    //                 DernierPoids: $('#DernierPoids').val(),
-    //                 Unite: $('#Unite').val(),
-    //                 UserCreate: $('#UserCreate').val(),
-    //                 DateCreate: $('#DateCreate').val(),
-    //                 UserUpdate: $('#UserUpdate').val(),
-    //                 DateUpdate: $('#DateUpdate').val(),
-
- 
-    // };
-
-    // $.ajax({
-    //                     url: '/Conteneur/Create',
-    // type: 'POST',
-    // contentType: 'application/json',
-    // data: JSON.stringify(utilisateur),
-    // success: function (result) {
-    // alert('conteneur ajouté avec succès !');
-    // // Optionnel : rafraîchir la page ou la liste des utilisateurs
-    // },
-    // error: function (xhr, status, error) {
-    // alert('Erreur : ' + error);
-    // }
-    // });
-    // });
-    // });
+  
   
             function deleteSelectedUser() {
                 var selectedUserId = $('table tbody tr.selected').find('td:first').text().trim();

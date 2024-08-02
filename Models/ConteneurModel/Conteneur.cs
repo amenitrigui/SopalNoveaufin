@@ -24,5 +24,6 @@ namespace SopalS.Models.ConteneurModel
         public int EmplacementId { get; set; } // Foreign Key
         [ForeignKey("EmplacementId")]
         public Emplacement Emplacement { get; set; } // Navigation property
+        public ICollection<HistoEtalonnage> HistoEtalonnages { get; set; }
     }
 }

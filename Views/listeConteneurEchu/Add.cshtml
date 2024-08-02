@@ -1,0 +1,129 @@
+﻿@model SopalS.Models.ConteneurModel.HistoEtalonnage
+
+@{
+    ViewData["Title"] = "Ajouter un HistoEtalonnage";
+}
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/" data-template="vertical-menu-template-free">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <style>
+        .navbar-custom {
+            background-color: #000080;
+        }
+
+            .navbar-custom .nav-link {
+                color: #ffffff;
+            }
+
+            .navbar-custom .navbar-brand {
+                color: #ffffff;
+            }
+
+        .content-container {
+            margin-top: 20px;
+        }
+    </style>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700&display=swap" rel="stylesheet" />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- Page CSS -->
+    <!-- Helpers -->
+    <script src="../assets/vendor/js/helpers.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/2.1.2/css/dataTables.dataTables.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-custom" data-bs-theme="dark">
+            <div class="container-fluid">
+                <span class="app-brand-text demo menu-text fw-bolder ms-2">
+                    <img src="~/img/logosopal.png" class="img-fluid" style="max-width:50px; height: 50px;" alt="Logo Sopal">
+                </span>
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="" asp-action="">PlAN DI & CASSE A OUTIL</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Conteneur" asp-action="Index">Données de base</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="" asp-action="">Paramétrage</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <a asp-controller="Utilisateur" asp-action="Register" class="bi bi-person-circle"></a>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+<form asp-action="Add" method="post">
+    <div class="form-group">
+        <label asp-for="Ref" class="control-label"></label>
+        <input asp-for="Ref" class="form-control" readonly />
+        <span asp-validation-for="Ref" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Date" class="control-label"></label>
+        <input asp-for="Date" class="form-control" />
+        <span asp-validation-for="Date" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Poids" class="control-label"></label>
+        <input asp-for="Poids" class="form-control" />
+        <span asp-validation-for="Poids" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Unite" class="control-label"></label>
+        <input asp-for="Unite" class="form-control" />
+        <span asp-validation-for="Unite" class="text-danger"></span>
+    </div>
+    <br />
+    <br />
+
+    <div class="form-group">
+            <button class="btn btn-outline-primary mb-2 d-block"style="background-color: #000080;"> Ajouter</button>
+    @*     <input type="submit" value="Ajouter" class="btn btn-primary" /> *@
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Retour à la liste</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+</body>
+</html>

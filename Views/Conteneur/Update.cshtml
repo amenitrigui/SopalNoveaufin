@@ -4,88 +4,191 @@
     ViewData["Title"] = "Update";
 }
 
-<h1>Update</h1>
+<!DOCTYPE html>
+<html lang="en"
+      class="light-style layout-menu-fixed"
+      dir="ltr"
+      data-theme="theme-default"
+      data-assets-path="../assets/"
+      data-template="vertical-menu-template-free">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <style>
+        .navbar-custom {
+            background-color: #000080;
+        }
 
-<h4>Conteneur</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Update" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Ref" class="control-label"></label>
-                <input asp-for="Ref"  class="form-control" />
-                <span asp-validation-for="Ref" class="text-danger"></span>
+            .navbar-custom .nav-link {
+                color: #ffffff; /* For the links */
+            }
+
+            .navbar-custom .navbar-brand {
+                color: #ffffff; /* For the 'Sopal' text */
+            }
+
+        .btn-outline-primary {
+            background-color: #000080;
+            color: #ffffff;
+            border: none;
+        }
+
+        .btn-outline-primary:hover {
+                background-color: #000066;
+            }
+
+        .form-container {
+            margin-top: 20px;
+        }
+    </style>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700&display=swap"
+          rel="stylesheet" />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- Page CSS -->
+    <!-- Helpers -->
+    <script src="../assets/vendor/js/helpers.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="../assets/js/config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-custom" data-bs-theme="dark">
+            <div class="container-fluid">
+                <span class="app-brand-text demo menu-text fw-bolder ms-2">
+                    <img src="~/img/logosopal.png" class="img-fluid" style="max-width:50px; height: 50px;" alt="Logo Sopal">
+                </span>
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="" asp-action="">PlAN DI & CASSE A OUTIL <i class="bi bi-arrows-fullscreen"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Conteneur" asp-action="Index">Donnés de base</a>
+                            <span class="visually-hidden">(current)</span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="" asp-action="">parametrage</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <a asp-controller="Utilisateur" asp-action="Register" class="bi bi-person-circle"></a>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="CodeBarres" class="control-label"></label>
-                <input asp-for="CodeBarres" class="form-control" />
-                <span asp-validation-for="CodeBarres" class="text-danger"></span>
+        </nav>
+    </header>
+
+    <div class="container form-container">
+        <div class="col-lg-12">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Formulaires</h5>
+                    <small class="text-muted float-end"> Modifier</small>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Update" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Ref" class="control-label"></label>
+                            <input asp-for="Ref" class="form-control" readonly />
+                            <span asp-validation-for="Ref" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CodeBarres" class="control-label"></label>
+                            <input asp-for="CodeBarres" class="form-control" />
+                            <span asp-validation-for="CodeBarres" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="EmplacementId" class="control-label"></label>
+                            <input asp-for="EmplacementId" class="form-control" />
+                            <span asp-validation-for="EmplacementId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Unite" class="control-label"></label>
+                            <input asp-for="Unite" class="form-control" />
+                            <span asp-validation-for="Unite" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DateCreate" class="control-label"></label>
+                            <input asp-for="DateCreate" class="form-control" />
+                            <span asp-validation-for="DateCreate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DateDernierEtalonnage" class="control-label"></label>
+                            <input asp-for="DateDernierEtalonnage" class="form-control" />
+                            <span asp-validation-for="DateDernierEtalonnage" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DateMiseEnService" class="control-label"></label>
+                            <input asp-for="DateMiseEnService" class="form-control" />
+                            <span asp-validation-for="DateMiseEnService" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DateUpdate" class="control-label"></label>
+                            <input asp-for="DateUpdate" class="form-control" />
+                            <span asp-validation-for="DateUpdate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DernierPoids" class="control-label"></label>
+                            <input asp-for="DernierPoids" class="form-control" />
+                            <span asp-validation-for="DernierPoids" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PeriodiciteEtalonnage" class="control-label"></label>
+                            <input asp-for="PeriodiciteEtalonnage" class="form-control" />
+                            <span asp-validation-for="PeriodiciteEtalonnage" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="UserCreate" class="control-label"></label>
+                            <input asp-for="UserCreate" class="form-control" />
+                            <span asp-validation-for="UserCreate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="UserUpdate" class="control-label"></label>
+                            <input asp-for="UserUpdate" class="form-control" />
+                            <span asp-validation-for="UserUpdate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group d-flex justify-content-center">
+                            <input type="submit" value="Modifier" class="btn btn-outline-primary" />
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Emplacement" class="control-label"></label>
-                <input asp-for="Emplacement" class="form-control" />
-                <span asp-validation-for="Emplacement" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="Unite" class="control-label"></label>
-                <input asp-for="Unite" class="form-control" />
-                <span asp-validation-for="Unite" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateCreate" class="control-label"></label>
-                <input asp-for="DateCreate" class="form-control" />
-                <span asp-validation-for="DateCreate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateDernierEtalonnage" class="control-label"></label>
-                <input asp-for="DateDernierEtalonnage" class="form-control" />
-                <span asp-validation-for="DateDernierEtalonnage" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateMiseEnService" class="control-label"></label>
-                <input asp-for="DateMiseEnService" class="form-control" />
-                <span asp-validation-for="DateMiseEnService" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateUpdate" class="control-label"></label>
-                <input asp-for="DateUpdate" class="form-control" />
-                <span asp-validation-for="DateUpdate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DernierPoids" class="control-label"></label>
-                <input asp-for="DernierPoids" class="form-control" />
-                <span asp-validation-for="DernierPoids" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PeriodiciteEtalonnage" class="control-label"></label>
-                <input asp-for="PeriodiciteEtalonnage" class="form-control" />
-                <span asp-validation-for="PeriodiciteEtalonnage" class="text-danger"></span>
-            </div>
-             <div class="form-group">
-                <label asp-for="UserCreate" class="control-label"></label>
-                <input asp-for="UserCreate" class="form-control" />
-                <span asp-validation-for="UserCreate" class="text-danger"></span>
-            </div>
-           
-            <div class="form-group">
-                <label asp-for="UserUpdate" class="control-label"></label>
-                <input asp-for="UserUpdate" class="form-control" />
-                <span asp-validation-for="UserUpdate" class="text-danger"></span>
-            </div>
-           
-            <div class="form-group">
-                <input type="submit" value="Edit" class="btn btn-outline-success" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+</body>
+</html>

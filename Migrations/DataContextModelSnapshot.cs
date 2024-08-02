@@ -74,6 +74,28 @@ namespace SopalS.Migrations
                     b.ToTable("Conteneur");
                 });
 
+            modelBuilder.Entity("SopalS.Models.ConteneurModel.HistoEtalonnage", b =>
+                {
+                    b.Property<int>("Ref")
+                        .HasColumnType("int")
+                        .HasColumnOrder(0);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2")
+                        .HasColumnOrder(1);
+
+                    b.Property<float>("Poids")
+                        .HasColumnType("real");
+
+                    b.Property<string>("Unite")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Ref", "Date");
+
+                    b.ToTable("HistoEtalonnages");
+                });
+
             modelBuilder.Entity("SopalS.Models.Emplacement", b =>
                 {
                     b.Property<int>("Codeemp")
@@ -89,29 +111,6 @@ namespace SopalS.Migrations
                     b.HasKey("Codeemp");
 
                     b.ToTable("Emplacement");
-                });
-
-            modelBuilder.Entity("SopalS.Models.HistoEtalonnageModel.HistoEtalonnage", b =>
-                {
-                    b.Property<int>("Ref")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Ref"));
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<float>("Poids")
-                        .HasColumnType("real");
-
-                    b.Property<string>("Unite")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Ref");
-
-                    b.ToTable("HistoEtalonnages");
                 });
 
             modelBuilder.Entity("SopalS.Models.Utilisateur", b =>
@@ -152,6 +151,22 @@ namespace SopalS.Migrations
                         .IsRequired();
 
                     b.Navigation("Emplacement");
+                });
+
+            modelBuilder.Entity("SopalS.Models.ConteneurModel.HistoEtalonnage", b =>
+                {
+                    b.HasOne("SopalS.Models.ConteneurModel.Conteneur", "Conteneur")
+                        .WithMany("HistoEtalonnages")
+                        .HasForeignKey("Ref")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Conteneur");
+                });
+
+            modelBuilder.Entity("SopalS.Models.ConteneurModel.Conteneur", b =>
+                {
+                    b.Navigation("HistoEtalonnages");
                 });
 #pragma warning restore 612, 618
         }
